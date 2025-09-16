@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuck Norris Jokes API</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 400px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #ff5722;
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #e64a19;
+    }
+
+    #joke {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 8px;
+      min-height: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>😂 Chuck Norris Jokes</h1>
+    <button onclick="getJoke()">Get a Joke</button>
+    <div id="joke">A joke will appear here...</div>
+  </div>
+
+  <script>
+    async function getJoke() {
+      try {
+        const response = await fetch("https://api.chucknorris.io/jokes/random");
+        const data = await response.json();
+        document.getElementById("joke").innerText = data.value;
+      } catch (error) {
+        document.getElementById("joke").innerText = "Error while fetching the joke 😅";
+      }
+    }
+  </script>
+</body>
+</html>
